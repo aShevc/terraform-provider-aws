@@ -35,9 +35,9 @@ var tmplCAE string
 var tmpl string
 
 const (
-	filename            = `../../../.ci/.semgrep-service-name.yml`
-	filenameCAE         = `../../../.ci/.semgrep-caps-aws-ec2.yml`
-	filenameConfigs     = `../../../.ci/.semgrep-configs.yml`
+	filename            = `../../../.ci_original/.semgrep-service-name.yml`
+	filenameCAE         = `../../../.ci_original/.semgrep-caps-aws-ec2.yml`
+	filenameConfigs     = `../../../.ci_original/.semgrep-configs.yml`
 	namesDataFile       = "../../../names/names_data.csv"
 	capsDataFile        = "../../../names/caps.csv"
 	maxBadCaps          = 21

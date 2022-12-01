@@ -17,7 +17,7 @@ import (
 )
 
 const (
-	filename      = `../../../.github/labeler-issue-triage.yml`
+	filename      = `../../../.github_original/labeler-issue-triage.yml`
 	namesDataFile = "../../../names/names_data.csv"
 )
 
