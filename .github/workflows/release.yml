@@ -33,9 +33,9 @@ jobs:
           go-version-file: 'go.mod'
           cache: true
       - name: Install signore
-        uses: hashicorp/setup-signore@v2
+        uses: hashicorp/setup-signore-package@v1
         with:
-          github-token: ${{secrets.TOKEN}}
+          token: ${{secrets.TOKEN}}
       -
         name: Import GPG key
         uses: crazy-max/ghaction-import-gpg@v5
