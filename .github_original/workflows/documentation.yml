@@ -5,9 +5,9 @@ on:
       - main
   pull_request:
     paths:
-      - .ci/.markdownlinkcheck.json
+      - .ci_original/.markdownlinkcheck.json
       - .markdownlint.yml
-      - .github/workflows/documentation.yml
+      - .github_original/workflows/documentation.yml
       - .go-version
       - docs/**
 
@@ -22,7 +22,7 @@ jobs:
         with:
           use-quiet-mode: 'yes'
           use-verbose-mode: 'yes'
-          config-file: '.ci/.markdownlinkcheck.json'
+          config-file: '.ci_original/.markdownlinkcheck.json'
           folder-path: 'docs'
           file-extension: '.md'
           base-branch: "main"
@@ -47,5 +47,5 @@ jobs:
         with:
           path: ~/go/pkg/mod
           key: ${{ runner.os }}-go-pkg-mod-${{ hashFiles('go.sum') }}
-      - run: cd .ci/tools && go install github.com/client9/misspell/cmd/misspell
+      - run: cd .ci_original/tools && go install github.com/client9/misspell/cmd/misspell
       - run: misspell -error -source text docs/

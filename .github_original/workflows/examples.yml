@@ -5,10 +5,10 @@ on:
       - main
   pull_request:
     paths:
-      - .github/workflows/examples.yml
+      - .github_original/workflows/examples.yml
       - .go-version
-      - .ci/.tflint.hcl
-      - .ci/tools/go.mod
+      - .ci_original/.tflint.hcl
+      - .ci_original/tools/go.mod
       - examples/**
 
 env:
@@ -30,15 +30,15 @@ jobs:
           go-version-file: .go-version
 
       - name: install tflint
-        run: cd .ci/tools && go install github.com/terraform-linters/tflint
+        run: cd .ci_original/tools && go install github.com/terraform-linters/tflint
 
       - uses: actions/cache@v3
         name: Cache plugin dir
         with:
           path: ~/.tflint.d/plugins
-          key: ${{ runner.os }}-tflint-${{ hashFiles('.ci/.tflint.hcl') }}
+          key: ${{ runner.os }}-tflint-${{ hashFiles('.ci_original/.tflint.hcl') }}
 
-      - run: tflint --config .ci/.tflint.hcl --init
+      - run: tflint --config .ci_original/.tflint.hcl --init
 
       - name: tflint
         run: |

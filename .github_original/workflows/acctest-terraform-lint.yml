@@ -6,11 +6,11 @@ on:
       - "release/**"
   pull_request:
     paths:
-      - .github/workflows/acctest-terraform-lint.yml
+      - .github_original/workflows/acctest-terraform-lint.yml
       - .go-version
-      - .ci/.tflint.hcl
-      - .ci/scripts/validate-terraform.sh
-      - .ci/tools/go.mod
+      - .ci_original/.tflint.hcl
+      - .ci_original/scripts/validate-terraform.sh
+      - .ci_original/tools/go.mod
       - 'internal/service/**/*_test.go'
 
 jobs:
@@ -28,7 +28,7 @@ jobs:
           path: ~/go/pkg/mod
           key: ${{ runner.os }}-go-pkg-mod-${{ hashFiles('go.sum') }}
 
-      - run: cd .ci/tools && go install github.com/katbyte/terrafmt
+      - run: cd .ci_original/tools && go install github.com/katbyte/terrafmt
 
       - run: |
           find ./internal/service -type f -name '*_test.go' \
@@ -61,12 +61,12 @@ jobs:
         timeout-minutes: 2
         with:
           path: ~/.tflint.d/plugins
-          key: ${{ runner.os }}-tflint-${{ hashFiles('.ci/.tflint.hcl') }}
+          key: ${{ runner.os }}-tflint-${{ hashFiles('.ci_original/.tflint.hcl') }}
 
-      - run: cd .ci/tools && go install github.com/katbyte/terrafmt
-      - run: cd .ci/tools && go install github.com/terraform-linters/tflint
+      - run: cd .ci_original/tools && go install github.com/katbyte/terrafmt
+      - run: cd .ci_original/tools && go install github.com/terraform-linters/tflint
 
-      - run: tflint --config .ci/.tflint.hcl --init
+      - run: tflint --config .ci_original/.tflint.hcl --init
 
       - run: echo -n "File count $( find ./internal -type f -regextype egrep -regex ${{ env.TEST_FILES_PARTITION }} | wc -l | xargs )"
       - run: |

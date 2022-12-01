@@ -9,11 +9,11 @@ on:
       - "release/**"
   pull_request:
     paths:
-      - .github/workflows/website.yml
+      - .github_original/workflows/website.yml
       - .go-version
-      - .ci/.markdownlinkcheck.json
-      - .ci/.tflint.hcl
-      - .ci/tools/go.mod
+      - .ci_original/.markdownlinkcheck.json
+      - .ci_original/.tflint.hcl
+      - .ci_original/tools/go.mod
       - .markdownlint.yml
       - website/docs/**
 
@@ -27,7 +27,7 @@ jobs:
         with:
           use-quiet-mode: "yes"
           use-verbose-mode: "yes"
-          config-file: ".ci/.markdownlinkcheck.json"
+          config-file: ".ci_original/.markdownlinkcheck.json"
           folder-path: "website/docs"
           file-prefix: "[a-h]"
           file-extension: ".markdown"
@@ -43,7 +43,7 @@ jobs:
         with:
           use-quiet-mode: "yes"
           use-verbose-mode: "yes"
-          config-file: ".ci/.markdownlinkcheck.json"
+          config-file: ".ci_original/.markdownlinkcheck.json"
           folder-path: "website/docs"
           file-prefix: "[i-z]"
           file-extension: ".markdown"
@@ -59,7 +59,7 @@ jobs:
         with:
           use-quiet-mode: "yes"
           use-verbose-mode: "yes"
-          config-file: ".ci/.markdownlinkcheck.json"
+          config-file: ".ci_original/.markdownlinkcheck.json"
           folder-path: "website/docs"
           file-extension: ".md"
           base-branch: "main"
@@ -86,7 +86,7 @@ jobs:
         with:
           path: ~/go/pkg/mod
           key: ${{ runner.os }}-go-pkg-mod-${{ hashFiles('go.sum') }}
-      - run: cd .ci/tools && go install github.com/client9/misspell/cmd/misspell
+      - run: cd .ci_original/tools && go install github.com/client9/misspell/cmd/misspell
       - run: misspell -error -source text website/
 
   terrafmt:
@@ -102,7 +102,7 @@ jobs:
         with:
           path: ~/go/pkg/mod
           key: ${{ runner.os }}-go-pkg-mod-${{ hashFiles('go.sum') }}
-      - run: cd .ci/tools && go install github.com/katbyte/terrafmt
+      - run: cd .ci_original/tools && go install github.com/katbyte/terrafmt
       - run: terrafmt diff ./website --check --pattern '*.markdown'
 
   tflint:
@@ -121,16 +121,16 @@ jobs:
           path: ~/go/pkg/mod
           key: ${{ runner.os }}-go-pkg-mod-${{ hashFiles('go.sum') }}
 
-      - run: cd .ci/tools && go install github.com/katbyte/terrafmt
-      - run: cd .ci/tools && go install github.com/terraform-linters/tflint
+      - run: cd .ci_original/tools && go install github.com/katbyte/terrafmt
+      - run: cd .ci_original/tools && go install github.com/terraform-linters/tflint
 
       - uses: actions/cache@v3
         name: Cache plugin dir
         with:
           path: ~/.tflint.d/plugins
-          key: ${{ runner.os }}-tflint-${{ hashFiles('.ci/.tflint.hcl') }}
+          key: ${{ runner.os }}-tflint-${{ hashFiles('.ci_original/.tflint.hcl') }}
 
-      - run: tflint --config .ci/.tflint.hcl --init
+      - run: tflint --config .ci_original/.tflint.hcl --init
 
       - run: |
           exit_code=0

@@ -21,14 +21,14 @@ updates:
       interval: "daily"
     open-pull-requests-limit: 30
   - package-ecosystem: "gomod"
-    directory: "/.ci/providerlint"
+    directory: "/.ci_original/providerlint"
     ignore:
       - dependency-name: "golang.org/x/tools"
       - dependency-name: "google.golang.org/grpc"
     schedule:
       interval: "daily"
   - package-ecosystem: "gomod"
-    directory: "/.ci/tools"
+    directory: "/.ci_original/tools"
     ignore:
       - dependency-name: "golang.org/x/tools"
       - dependency-name: "google.golang.org/grpc"

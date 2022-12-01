@@ -87,4 +87,4 @@ run:
   timeout: 75m
   go: 1.18
   skip-dirs:
-    - .ci/providerlint/vendor
+    - .ci_original/providerlint/vendor

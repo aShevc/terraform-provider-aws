@@ -8,7 +8,7 @@ on:
       - 'release/**'
   pull_request:
     paths:
-      - .github/workflows/goreleaser-ci.yml
+      - .github_original/workflows/goreleaser-ci.yml
       - .goreleaser.yml
       - .go-version
       - go.sum
@@ -71,4 +71,4 @@ jobs:
       - name: goreleaser build
         uses: goreleaser/goreleaser-action@v3
         with:
-          args: build --config .github/goreleaser-cross-compiler-test.yml --id 32-bit-arch --snapshot
+          args: build --config .github_original/goreleaser-cross-compiler-test.yml --id 32-bit-arch --snapshot

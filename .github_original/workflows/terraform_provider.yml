@@ -7,11 +7,11 @@ on:
       - 'release/**'
   pull_request:
     paths:
-      - .github/workflows/terraform_provider.yml
-      - .ci/scripts/providerlint.sh
+      - .github_original/workflows/terraform_provider.yml
+      - .ci_original/scripts/providerlint.sh
       - .go-version
-      - .ci/.golangci.yml
-      - .ci/tools/go.mod
+      - .ci_original/. 5golangci.yml
+      - .ci_original/tools/go.mod
       - .markdownlint.yml
       - internal/**
       - docs/index.md
@@ -169,7 +169,7 @@ jobs:
         with:
           path: ~/go/pkg/mod
           key: ${{ runner.os }}-go-pkg-mod-${{ hashFiles('go.sum') }}
-      - run: cd .ci/tools && go install github.com/pavius/impi/cmd/impi
+      - run: cd .ci_original/tools && go install github.com/pavius/impi/cmd/impi
       - run: impi --local . --scheme stdThirdPartyLocal ./...
 
   compile_sweepers:
@@ -252,7 +252,7 @@ jobs:
         with:
           path: ~/go/pkg/mod
           key: ${{ runner.os }}-go-pkg-mod-${{ hashFiles('go.sum') }}
-      - run: cd .ci/tools && go install github.com/bflad/tfproviderdocs
+      - run: cd .ci_original/tools && go install github.com/bflad/tfproviderdocs
       - uses: actions/cache@v3
         timeout-minutes: 2
         with:

@@ -4,7 +4,7 @@ client-connections:
 create:
   - 'internal/create/**/*'
 dependencies:
-  - '.github/dependabot.yml'
+  - '.github_original/dependabot.yml'
 documentation:
   - '**/*.md'
   - 'docs/**/*'
@@ -19,16 +19,16 @@ generators:
   - 'internal/**/generate.go'
   - 'internal/generate/**/*'
 github_actions:
-  - '.github/*.yml'
-  - '.github/workflows/*.yml'
+  - '.github_original/*.yml'
+  - '.github_original/workflows/*.yml'
 linter:
-  - '.ci/**/*'
-  - '.github/workflows/acctest-terraform-lint.yml'
-  - '.github/workflows/providerlint.yml'
-  - '.github/workflows/semgrep-ci.yml'
-  - '.github/workflows/terraform_provider.yml'
-  - '.github/workflows/website.yml'
-  - '.github/workflows/workflow-lint.yml'
+  - '.ci_original/**/*'
+  - '.github_original/workflows/acctest-terraform-lint.yml'
+  - '.github_original/workflows/providerlint.yml'
+  - '.github_original/workflows/semgrep-ci.yml'
+  - '.github_original/workflows/terraform_provider.yml'
+  - '.github_original/workflows/website.yml'
+  - '.github_original/workflows/workflow-lint.yml'
 pre-service-packages:
   - '**/data_source_aws_*'
   - '**/resource_aws_*'
@@ -43,7 +43,7 @@ provider:
   - 'main.go'
   - 'website/docs/index.html.markdown'
 repository:
-  - '.github/**/*'
+  - '.github_original/**/*'
   - 'GNUmakefile'
   - 'infrastructure/**/*'
 skaff:
