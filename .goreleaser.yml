@@ -21,7 +21,7 @@ builds:
       #- '386'
       - amd64
 #      - arm
-      - arm64
+      #- arm64
     ignore:
       - goarch: arm
         goos: windows
@@ -38,8 +38,6 @@ release:
   extra_files:
     - glob: 'terraform-registry-manifest.json'
       name_template: '{{ .ProjectName }}_{{ .Version }}_manifest.json'
-  ids:
-    - none
 snapshot:
   name_template: "{{ .Tag }}-next"
 checksum:
